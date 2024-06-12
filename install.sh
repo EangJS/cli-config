@@ -19,4 +19,18 @@ sudo apt install -y eza
 # install packages from packages.list
 xargs sudo apt-get -y install < packages.list
 
+# install fnm
+curl -fsSL https://fnm.vercel.app/install | bash
+
+# install node
+curl -fsSL https://fnm.vercel.app/install | bash
+# download and install Node.js
+fnm use --install-if-missing 20
+
+# install yubico
+sudo add-apt-repository ppa:yubico/stable
+sudo apt-get update
+sudo apt-get install libpam-yubico
+
+
 

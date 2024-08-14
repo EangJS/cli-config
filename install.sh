@@ -15,7 +15,7 @@ sudo apt install -y eza
 sudo apt install -y net-tools
 
 # install python
-sudo apt install -y python
+sudo apt install -y python-is-python3
 sudo apt install -y python3-pip
 
 # install starship for cli-prettier

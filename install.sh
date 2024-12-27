@@ -26,7 +26,8 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 
-# install eza for better ls
+# install eza for bett
+er ls
 sudo mkdir -p /etc/apt/keyrings
 wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
 echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
@@ -56,6 +57,13 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 #install chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+#install nerd font
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip
+mkdir ~/.fonts
+unzip CascadiaCode.zip
+cp CaskaydiaCoveNerdFontMono-Regular.ttf ~/.fonts
+echo "Please set font in terminal profile"
 
 cat .bash_profile >> ~/.bashrc
 source ~/.bashrc

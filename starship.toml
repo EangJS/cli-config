@@ -43,8 +43,12 @@ deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
-
-
+[memory_usage]
+threshold = 50
+symbol = "󰓅"
+style = "bold dimmed white"
+format = '( [$symbol( ${ram})]($style) )'
+disabled = false
 
 [time]
 time_format = "%T"
@@ -55,8 +59,3 @@ disabled = false
 [username]
 style_user = "bold blue"
 show_always = true
-
-
-
-
-

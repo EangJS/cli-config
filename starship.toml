@@ -59,3 +59,10 @@ disabled = false
 [username]
 style_user = "bold blue"
 show_always = true
+
+[custom.cpu]
+command = "top -bn1 | grep 'Cpu(s)' | sed 's/.*, \\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}'"
+when = "true"
+format = "CPU:[$output]($style) "
+style = "bold green"
+

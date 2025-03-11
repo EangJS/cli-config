@@ -1,0 +1,17 @@
+#!/bin/bash
+# /usr/local/bin/ram_usage
+
+# Get memory stats from `free` in MiB
+used=$(free -m | awk '/^Mem:/ {print $3}')
+total=$(free -m | awk '/^Mem:/ {print $2}')
+
+# Check if total RAM is less than 1024 MiB (1 GiB)
+if [ "$total" -lt 1024 ]; then
+    # Print in MiB
+    echo "${used}/${total} MiB"
+else
+    # Convert to GiB (MiB -> GiB)
+    used_gib=$(awk "BEGIN {printf \"%.2f\", $used / 1024}")
+    total_gib=$(awk "BEGIN {printf \"%.2f\", $total / 1024}")
+    echo "${used_gib}/${total_gib} GiB"
+fi

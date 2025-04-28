@@ -1,5 +1,5 @@
 alias ls='eza -l --icons'
-alias cat='batcat'
+alias bat='batcat'
 eval "$(starship init bash)"
 cd(){
     builtin cd "$@" && ls

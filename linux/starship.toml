@@ -45,9 +45,12 @@ deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
+[git_commit]
+tag_disabled = false
+
 [custom.memory]
 command = "/usr/local/bin/ram_usage"
-format = " [$output]($style) "
+format = "🧠 [$output]($style) "
 style = "bold purple"
 shell = "bash"
 when = true

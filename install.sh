@@ -2,6 +2,8 @@
 sudo apt update
 sudo apt upgrade -y
 
+sudo apt install -y unzip
+
 # install git
 sudo apt install -y git
 
@@ -33,12 +35,12 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
 sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 
 # install fnm
-curl -fsSL https://fnm.vercel.app/install | bash
+#curl -fsSL https://fnm.vercel.app/install | bash
 
 # install node
-curl -fsSL https://fnm.vercel.app/install | bash
+#curl -fsSL https://fnm.vercel.app/install | bash
 # download and install Node.js
-fnm use --install-if-missing 20
+#fnm use --install-if-missing 20
 
 # install yubico
 # sudo add-apt-repository -y ppa:yubico/stable
@@ -54,8 +56,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 #install chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 #install nerd font
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip

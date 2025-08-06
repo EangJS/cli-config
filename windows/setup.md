@@ -13,3 +13,8 @@ Guides to setup windows tools
 5. Create subkey: `Computer\HKEY_CLASSES_ROOT\directory\background\shell\Terminal\command`
     * (default) | REG_EXPAND_SZ | `<PATH_TO_TERMINAL.exe> -d "%V"`
            
+## [FZF](https://github.com/junegunn/fzf?tab=readme-ov-file#setting-up-shell-integration)
+```powershell
+winget install fzf
+Install-Module -Name PSFzf
+```

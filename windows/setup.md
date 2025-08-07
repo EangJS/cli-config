@@ -40,15 +40,7 @@ sudo apt install yubikey-manager
 sudo apt install fido2-tools
 ```
 
-4. Check working
-```
-> FIDO_DEBUG=1 fido2-token -L
-run_manifest: found 1 hid device
-run_manifest: found 0 nfc devices
-/dev/hidraw1: vendor=0x1050, product=0x0407 (Yubico YubiKey OTP+FIDO+CCID)
-```
-
-5. Add Udev rules
+4. Add Udev rules
 ```
 sudo vi /etc/udev/rules.d/99-yubikey.rules
 ```
@@ -56,10 +48,18 @@ sudo vi /etc/udev/rules.d/99-yubikey.rules
 KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
 ```
 
-6. Reload rules
+5. Reload rules
 ```
 sudo udevadm control --reload-rules
 sudo udevadm trigger
+```
+
+6. Check working
+```
+> FIDO_DEBUG=1 fido2-token -L
+run_manifest: found 1 hid device
+run_manifest: found 0 nfc devices
+/dev/hidraw1: vendor=0x1050, product=0x0407 (Yubico YubiKey OTP+FIDO+CCID)
 ```
 
 7. Generate SSH-key

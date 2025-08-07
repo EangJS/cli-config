@@ -44,3 +44,32 @@ sudo usermod -aG plugdev $USER
 ```
 wsl --shutdown
 ```
+
+5. Install yubikey-manager and fido2-tools
+```
+sudo apt install yubikey-manager
+sudo apt install fido2-tools
+```
+
+6. Check working
+```
+> FIDO_DEBUG=1 fido2-token -L
+run_manifest: found 1 hid device
+run_manifest: found 0 nfc devices
+/dev/hidraw1: vendor=0x1050, product=0x0407 (Yubico YubiKey OTP+FIDO+CCID)
+```
+
+7. Add Udev rules
+```
+sudo vi /etc/udev/rules.d/99-yubikey.rules
+```
+```
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", GROUP="plugdev", ATTRS{idVendor}=="xxxx", ATTRS{idProduct}=="xxxx"
+```
+
+8. Generate SSH-key
+```
+ssh-keygen -t ed25519-sk
+or
+ssh-keygen -t ed25519-sk -O resident -O no-touch-required
+```

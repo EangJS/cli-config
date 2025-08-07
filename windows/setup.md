@@ -24,34 +24,23 @@ Attach USB devices to WSL2
 
 ### Attaching Yubikey to WSL
 
-1. Create udev rule
-```
-echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="1050", ATTR{idProduct}=="0407", MODE="0660", GROUP="plugdev"' | sudo tee /etc/udev/rules.d/70-u2f.rules
-```
-
-2. Reload rules
-```
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-```
-
-3. Add usermod group
+1. Add usermod group
 ```
 sudo usermod -aG plugdev $USER
 ```
 
-4. Restart WSL
+2. Restart WSL
 ```
 wsl --shutdown
 ```
 
-5. Install yubikey-manager and fido2-tools
+3. Install yubikey-manager and fido2-tools
 ```
 sudo apt install yubikey-manager
 sudo apt install fido2-tools
 ```
 
-6. Check working
+4. Check working
 ```
 > FIDO_DEBUG=1 fido2-token -L
 run_manifest: found 1 hid device
@@ -59,15 +48,21 @@ run_manifest: found 0 nfc devices
 /dev/hidraw1: vendor=0x1050, product=0x0407 (Yubico YubiKey OTP+FIDO+CCID)
 ```
 
-7. Add Udev rules
+5. Add Udev rules
 ```
 sudo vi /etc/udev/rules.d/99-yubikey.rules
 ```
 ```
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", GROUP="plugdev", ATTRS{idVendor}=="xxxx", ATTRS{idProduct}=="xxxx"
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
 ```
 
-8. Generate SSH-key
+6. Reload rules
+```
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+7. Generate SSH-key
 ```
 ssh-keygen -t ed25519-sk
 or

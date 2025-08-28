@@ -93,5 +93,5 @@ show_always = true
 
 [localip]
 ssh_only = false
-format = '[$localipv4](green)'
+format = '[$localipv4](#FFC0CB)'
 disabled = false

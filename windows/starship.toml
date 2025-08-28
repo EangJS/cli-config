@@ -1,5 +1,8 @@
+format = """
+$username @ $localip in $directory $all"""
+
 [character]
-success_symbol = "[➜](bold purple)" 
+success_symbol = "[ ➟ ](bold blue)" 
 error_symbol = "[✖](bold red) "
 
 [battery]
@@ -8,7 +11,7 @@ charging_symbol = "🔌"
 discharging_symbol = "⚡"
 
 [[battery.display]]
-threshold = 20
+threshold = 30
 style = "bold red"
 discharging_symbol = "⚡"
 charging_symbol = "🔌"
@@ -47,7 +50,7 @@ format = "$all_status$ahead_behind"
 threshold = 50
 symbol = "󰓅"
 style = "bold dimmed white"
-format = '( [$symbol( ${ram})]($style) )'
+format = '([$symbol( ${ram})]($style))'
 disabled = false
 
 [time]
@@ -57,5 +60,11 @@ style = "bright-white"
 disabled = false
 
 [username]
+format = "[$user]($style)"
 style_user = "bold blue"
 show_always = true
+
+[localip]
+ssh_only = false
+format = '[$localipv4](green)'
+disabled = false

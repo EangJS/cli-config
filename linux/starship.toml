@@ -1,9 +1,33 @@
-format = """$username @ $localip in $directory $all"""
+format = """$username @ $localip $os in $directory $all"""
 
 command_timeout = 1500
 
 [os]
 disabled=false
+format = '[$symbol](green)'
+
+[os.symbols]
+Alpine = "🏔️"
+Android = "🤖"
+Arch = "🎗️"
+CentOS = "💠"
+Debian = "🌀"
+Fedora = "🎩"
+FreeBSD = "😈"
+Gentoo = "🗜️"
+Kali = "🐉"
+Linux = "🐧"
+Macos = "🍎"
+Mint = "🌿"
+NetBSD = "🚩"
+NixOS = "❄️"
+OpenBSD = "🐡"
+openSUSE = "🦎 "
+Raspbian = "🍓"
+Redhat = "🎩"
+RedHatEnterprise = "🎩"
+Ubuntu = "🎯"
+Windows = "🪟"
 
 [character]
 success_symbol = "[➜](bold purple)" 

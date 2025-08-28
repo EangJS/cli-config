@@ -1,4 +1,9 @@
+format = """$username @ $localip in $directory $all"""
+
 command_timeout = 1500
+
+[os]
+disabled=false
 
 [character]
 success_symbol = "[➜](bold purple)" 
@@ -45,15 +50,6 @@ deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
-[git_commit]
-tag_disabled = false
-
-[custom.memory]
-command = "/usr/local/bin/ram_usage"
-format = "🧠 [$output]($style) "
-style = "bold purple"
-shell = "bash"
-when = true
 
 [time]
 time_format = "%T"
@@ -62,6 +58,7 @@ style = "bright-white"
 disabled = false
 
 [username]
+format = "[$user]($style)"
 style_user = "bold blue"
 show_always = true
 
@@ -70,3 +67,11 @@ command = "top -bn1 | grep 'Cpu(s)' | sed 's/.*, \\([0-9.]*\\)%* id.*/\\1/' | aw
 when = "true"
 format = " [$output]($style) "
 style = "bold green"
+
+[localip]
+ssh_only = false
+format = '[$localipv4](green)'
+disabled = false
+
+[directory]
+format = "[$path]($style)"

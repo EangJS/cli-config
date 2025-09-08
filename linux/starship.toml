@@ -87,6 +87,16 @@ style_user = "bold blue"
 show_always = true
 
 [custom.cpu]
+command = '''
+lscpu | awk -F: '/Model name/ {gsub(/^ +/, "", $2); print $2}' \
+| grep -oE '(i[3579]-[A-Za-z0-9]+|Ryzen [0-9]+ [0-9A-Za-z]+)' \
+| head -n1
+'''
+when = "true"
+format = "CPU: [$output]($style) "
+style = "bold cyan"
+
+[custom.cpu_utilization]
 command = "top -bn1 | grep 'Cpu(s)' | sed 's/.*, \\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}'"
 when = "true"
 format = " [$output]($style) "

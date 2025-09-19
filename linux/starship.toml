@@ -72,7 +72,7 @@ staged = "🗃️  ×${count}"
 renamed = "📛 ×${count}"
 deleted = "🗑️  ×${count}"
 style = "bright-white"
-format = "$all_status$ahead_behind"
+format = "$all_status$ahead_behind "
 
 
 [time]
@@ -101,6 +101,13 @@ command = "top -bn1 | grep 'Cpu(s)' | sed 's/.*, \\([0-9.]*\\)%* id.*/\\1/' | aw
 when = "true"
 format = " [$output]($style) "
 style = "bold green"
+
+[custom.memory]
+command = "/usr/local/bin/ram_usage"
+format = "🧠 [$output]($style) "
+style = "bold purple"
+shell = "bash"
+when = true
 
 [localip]
 ssh_only = false

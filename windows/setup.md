@@ -68,3 +68,37 @@ ssh-keygen -t ed25519-sk
 or
 ssh-keygen -t ed25519-sk -O resident -O no-touch-required
 ```
+
+
+## Using USBIP on Fedora
+
+1. Install USBIP
+
+2. Attach USB device from Fedora using `sudo usbip attach -r 192.168.10.1 -b 1-4`
+3. Use `lsusb` to check if device is attached
+4. Use `fido2-token -L` to see if Security Key is recognised. (Continue if you see permission denied)
+5. Create plugdev group:
+```
+sudo groupadd plugdev
+sudo usermod -aG plugdev $USER
+```
+Apply new group
+```
+newgrp plugdev
+```
+6. Create rule (For trustkey, use the previous example for yubikey)
+`sudo nano /etc/udev/rules.d/70-trustkey-fido.rules`
+Add this:
+```
+# TrustKey G320H FIDO2 key
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="plugdev", TAG+="uaccess", ATTRS{idVendor}=="311f", ATTRS{idProduct}=="4a2a"
+```
+6. Reload rules
+```
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+7. Test it `fido2-token -L`
+
+
+

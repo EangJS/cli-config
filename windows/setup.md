@@ -100,5 +100,23 @@ sudo udevadm trigger
 ```
 7. Test it `fido2-token -L`
 
+## Setup GPG on WSL
 
+This guide is done on Fedora 42
 
+1. `sudo dnf install gnupg2 pcsc-lite pcsc-lite-ccid yubikey-manager`
+
+2. `sudo systemctl enable --now pcscd`
+
+3. `gpgconf --kill gpg-agent` and `gpgconf --launch gpg-agent`
+
+4. Try `gpg --card-status`
+If successful, you can end here, else if you get:
+```
+gpg: selecting card failed: Service is not running
+gpg: OpenPGP card not available: Service is not running
+```
+Please continue
+
+6. `systemctl status pcscd`
+If you see a permission denied, please use sudo

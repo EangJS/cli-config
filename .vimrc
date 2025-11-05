@@ -969,3 +969,8 @@ augroup headers
 	autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl>\"|$
 	autocmd BufNewFile *.js 0put =\"#!/usr/bin/env node\<nl>\"|$
 augroup end
+
+if &term =~ 'xterm'
+  " When exiting Vim, set cursor to vertical bar |
+  autocmd VimLeave * silent !echo -ne "\e[6 q"
+endif

@@ -52,6 +52,7 @@ call plug#begin('~/.vim/plugged')
 	" Statusbar
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+	Plug 'airblade/vim-gitgutter'
 
 	" Tools
 	Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
@@ -62,6 +63,7 @@ call plug#begin('~/.vim/plugged')
 	" Edition
 	Plug 'junegunn/vim-easy-align'
 	Plug 'godlygeek/tabular'
+	Plug 'tpope/vim-fugitive'
 	Plug 'jiangmiao/auto-pairs'
 
     " Themes
@@ -72,7 +74,37 @@ call plug#end()
 "----------------------------------------------------------------
 " Plugin settings
 "----------------------------------------------------------------
+" --- Statusbar ---
+" Airline settings
+let g:airline_theme                       = 'luna'
+let g:airline_powerline_fonts             = 1
+let g:airline_section_z                   = airline#section#create([
+			\ '%1p%% ',
+			\ 'Ξ%l%',
+			\ '\⍿%c'])
 
+
+" --- Git tools ---
+" Gitgutter settings
+let g:gitgutter_max_signs             = 5000
+let g:gitgutter_sign_added            = '+'
+let g:gitgutter_sign_modified         = '»'
+let g:gitgutter_sign_removed          = '_'
+let g:gitgutter_sign_modified_removed = '»╌'
+let g:gitgutter_map_keys              = 0
+let g:gitgutter_diff_args             = '--ignore-space-at-eol'
+
+nmap <Leader>j <Plug>(GitGutterNextHunk)zz
+nmap <Leader>k <Plug>(GitGutterPrevHunk)zz
+nnoremap <silent> <C-g> :call <SID>ToggleGGPrev()<CR>zz
+nnoremap <Leader>ga :GitGutterStageHunk<CR>
+nnoremap <Leader>gu :GitGutterUndoHunk<CR>
+
+" Fugitive settings
+nnoremap <C-s> :call <SID>ToggleGstatus()<CR>
+nnoremap <Leader>gv :Gvdiffsplit<CR>:windo set wrap<CR>
+nnoremap <Leader>gh :Gvdiffsplit HEAD<CR>:windo set wrap<CR>
+nnoremap <Leader>gb :Gblame<CR>
 
 "----------------------------------------------------------------
 " User interface
@@ -193,14 +225,14 @@ set autoindent
 set smartindent
 
 " Use tabs, no spaces
-set noexpandtab
+set expandtab
 
 " Be smart when using tabs
 set smarttab
 
 " Tab size (in spaces)
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 " Remap indentation
 nnoremap <TAB> >>

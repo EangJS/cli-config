@@ -369,3 +369,8 @@ nnoremap <Leader>f mao<Esc>`a
 
 " Enter a new line Up from 'Normal Mode'
 nnoremap <Leader>F maO<Esc>`a
+
+if &term =~ 'xterm'
+  " When exiting Vim, set cursor to vertical bar |
+  autocmd VimLeave * silent !echo -ne "\e[6 q"
+endif

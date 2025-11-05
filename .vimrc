@@ -483,14 +483,14 @@ set autoindent
 set smartindent
 
 " Use tabs, no spaces
-set noexpandtab
+set expandtab
 
 " Be smart when using tabs
 set smarttab
 
 " Tab size (in spaces)
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 " Remap indentation
 nnoremap <TAB> >>

@@ -100,6 +100,25 @@ sudo udevadm trigger
 ```
 7. Test it `fido2-token -L`
 
+---
+
+For Fedora 43
+
+`> sudo groupadd hidraw`
+`> sudo usermod -aG hidraw $USER`
+
+`> newgrp hidraw`
+
+`> sudo vim /etc/udev/rules.d/99-hidraw.rules`
+
+```
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="311f", ATTRS{idProduct}=="4a2a", MODE="0666"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="311f", ATTRS{idProduct}=="4a2a", MODE="0666"
+```
+
+Get vendor id and product id via: `udevadm info --query=property /dev/hidrawX`
+
+
 ## Setup GPG on WSL
 > [!NOTE]  
 > DOES NOT WORK RELIABLY ON WSL

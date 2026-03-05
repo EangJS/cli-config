@@ -20,10 +20,6 @@ set secure
 " Lines of memory to remember
 set history=10000
 
-" Leader key to add extra key combinations
-let mapleader = ','
-let g:mapleader = ','
-
 " Time delay on <Leader> key
 set timeoutlen=3000 ttimeoutlen=100
 
@@ -48,6 +44,11 @@ endif
 " Set inc/dec
 set nrformats-=octal
 
+" Auto open NERDTree
+autocmd VimEnter * NERDTree
+
+nnoremap <leader>tt :FloatermToggle<CR>
+
 "----------------------------------------------------------------
 " 2. Plugins (Plug)
 "----------------------------------------------------------------
@@ -71,6 +72,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdtree'
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
+    Plug 'voldikss/vim-floaterm
 
 	" Edition
 	Plug 'junegunn/vim-easy-align'

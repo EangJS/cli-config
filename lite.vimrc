@@ -4,7 +4,7 @@
 
 " Disable vi compatibility
 if !has("nvim")
-	set nocompatible
+        set nocompatible
 endif
 
 " Reload .vimrc
@@ -17,9 +17,6 @@ set secure
 " Lines of memory to remember
 set history=10000
 
-" Leader key to add extra key combinations
-let mapleader = ','
-let g:mapleader = ','
 
 " Time delay on <Leader> key
 set timeoutlen=3000 ttimeoutlen=100
@@ -36,6 +33,11 @@ nnoremap Q <NOP>
 " Set inc/dec
 set nrformats-=octal
 
+" Auto open NERDTree
+autocmd VimEnter * NERDTree
+
+nnoremap <leader>tt :FloatermToggle<CR>
+
 "----------------------------------------------------------------
 " 2. Plugins (Plug)
 "----------------------------------------------------------------
@@ -49,22 +51,23 @@ endif
 " List of plugins installed
 call plug#begin('~/.vim/plugged')
 
-	" Statusbar
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'airblade/vim-gitgutter'
+        " Statusbar
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
+        Plug 'airblade/vim-gitgutter'
 
-	" Tools
-	Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
-	Plug 'preservim/nerdtree'
-	Plug 'junegunn/fzf'
-	Plug 'junegunn/fzf.vim'
+        " Tools
+        Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
+        Plug 'preservim/nerdtree'
+        Plug 'junegunn/fzf'
+        Plug 'junegunn/fzf.vim'
+    Plug 'voldikss/vim-floaterm'
 
-	" Edition
-	Plug 'junegunn/vim-easy-align'
-	Plug 'godlygeek/tabular'
-	Plug 'tpope/vim-fugitive'
-	Plug 'jiangmiao/auto-pairs'
+        " Edition
+        Plug 'junegunn/vim-easy-align'
+        Plug 'godlygeek/tabular'
+        Plug 'tpope/vim-fugitive'
+        Plug 'jiangmiao/auto-pairs'
 
     " Themes
     Plug 'tyrannicaltoucan/vim-deep-space'
@@ -79,9 +82,9 @@ call plug#end()
 let g:airline_theme                       = 'luna'
 let g:airline_powerline_fonts             = 1
 let g:airline_section_z                   = airline#section#create([
-			\ '%1p%% ',
-			\ 'Ξ%l%',
-			\ '\⍿%c'])
+                        \ '%1p%% ',
+                        \ 'Ξ%l%',
+                        \ '\⍿%c'])
 
 
 " --- Git tools ---
@@ -163,29 +166,29 @@ set laststatus=2
 
 " Change the cursor shape
 if !has("nvim")
-	if &term != "linux"
-		let &t_SI = "\<Esc>[6 q"
-		let &t_SR = "\<Esc>[4 q"
-		let &t_EI = "\<Esc>[2 q"
-	endif
+        if &term != "linux"
+                let &t_SI = "\<Esc>[6 q"
+                let &t_SR = "\<Esc>[4 q"
+                let &t_EI = "\<Esc>[2 q"
+        endif
 else
-	set guicursor=n-v:block-Cursor/lCursor-blinkon0
-	set guicursor+=i-ci-c:ver100-Cursor/lCursor-blinkon0
-	set guicursor+=r-cr:hor100-Cursor/lCursor-blinkon0
+        set guicursor=n-v:block-Cursor/lCursor-blinkon0
+        set guicursor+=i-ci-c:ver100-Cursor/lCursor-blinkon0
+        set guicursor+=r-cr:hor100-Cursor/lCursor-blinkon0
 endif
 
 " Omni completion
 if has('autocmd') && exists('+omnifunc')
 autocmd Filetype *
-	\ if &omnifunc == "" |
-	\     setlocal omnifunc=syntaxcomplete#Complete |
-	\ endif
+        \ if &omnifunc == "" |
+        \     setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
 endif
 
 " Fix italics issue
 if !has("nvim")
-	let &t_ZH="\e[3m"
-	let &t_ZR="\e[23m"
+        let &t_ZH="\e[3m"
+        let &t_ZR="\e[23m"
 endif
 
 "----------------------------------------------------------------
@@ -265,7 +268,7 @@ set wrap
 " Don't break the words
 " Only works if I set nolist (F6)
 set linebreak
-set showbreak=↳\ 
+set showbreak=↳\
 
 " Stop automatic wrapping
 set textwidth=0
@@ -314,9 +317,9 @@ set foldmethod=marker
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\   exe "normal! g`\"" |
-	\ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 
 "----------------------------------------------------------------
 " Text edition

@@ -1,37 +1,42 @@
-format = """$username @ $localip $os in $directory $all"""
+format = """
+$os\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_commit\
+$all\
+$fill\
+[](blue)\
+[ ${custom.cpu} ${custom.cpu_utilization} ](bg:blue fg:#bac2de)\
+[ ${custom.memory} ](bg:cyan fg:#bac2de)\
+[ ${localip} ](bg:green fg:#bac2de)\
+[](green)\
+$line_break\
+[╰─](bold green_bright)\
+$character\
+$time\
+$cmd_duration\
+$sudo\
+$status
+"""
 
-command_timeout = 1500
+[fill]
+symbol = ' '
 
-[os]
-disabled=false
-format = '[$symbol](green)'
+[sudo]
+style = "bold green"
+symbol = "👩 "
+disabled = false
 
-[os.symbols]
-Alpine = "🏔️"
-Android = "🤖"
-Arch = "🎗️"
-CentOS = "💠"
-Debian = "🌀"
-Fedora = "🎩"
-FreeBSD = "😈"
-Gentoo = "🗜️"
-Kali = "🐉"
-Linux = "🐧"
-Macos = "🍎"
-Mint = "🌿"
-NetBSD = "🚩"
-NixOS = "❄️"
-OpenBSD = "🐡"
-openSUSE = "🦎 "
-Raspbian = "🍓"
-Redhat = "🎩"
-RedHatEnterprise = "🎩"
-Ubuntu = "🎯"
-Windows = "🪟"
-
-[character]
-success_symbol = "[➜](bold purple)" 
-error_symbol = "[✖](bold red) "
+[directory]
+read_only = " 󰌾"
+style = "fg:blue"
+read_only_style = "fg:bright-red"
+truncation_length = 3
+truncation_symbol = "…/"
+format = "[ $path]($style)[$read_only]($read_only_style) "
 
 [battery]
 full_symbol = "🔋"
@@ -43,22 +48,58 @@ threshold = 20
 style = "bold red"
 discharging_symbol = "⚡"
 charging_symbol = "🔌"
+
 [[battery.display]]
 threshold = 99
 style = "yellow"
 discharging_symbol = "⚡"
 charging_symbol = "🔌"
+
 [[battery.display]]
 threshold = 100
 discharging_symbol = "🔋"
 charging_symbol = "🔋"
 
-[c]
-format = "via [$name $version]($style)"
-[sudo]
-style = "bold green"
-symbol = "👩‍💻 "
+[time]
+time_format = "%T"
+format = "🕙 $time($style) "
+style = "bright-white"
 disabled = false
+
+[cmd_duration]
+disabled = false
+min_time = 2000
+format = "[$duration]($style) "
+style = "bold fg:yellow"
+
+[aws]
+disabled = true
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+format = "[$name $version]($style)"
+
+[cmake]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[git_commit]
+tag_symbol = "  "
 
 [git_status]
 conflicted = "⚔️ "
@@ -74,18 +115,145 @@ deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind "
 
+[golang]
+symbol = " "
 
-[time]
-time_format = "%T"
-format = "🕙 $time($style) "
-style = "bright-white"
+[guix_shell]
+disabled = true
+symbol = " "
+
+[haskell]
+disabled = true
+symbol = " "
+
+[haxe]
+disabled = true
+symbol = " "
+
+[hg_branch]
+disabled = true
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+disabled = true
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[meson]
+disabled = true
+symbol = "󰔷 "
+
+[nim]
+disabled = true
+symbol = "󰆥 "
+
+[nix_shell]
+disabled = true
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[package]
+disabled = true
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+disabled = true
+symbol = " "
+
+[python]
+symbol = ""
+format = " [$symbol $version]($style) "
+
+[rust]
+symbol = "󱘗 "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+
+# --- OS Configuration
+[os]
 disabled = false
+format = "[$symbol ]($style)"
+style = "fg:purple"
 
-[username]
-format = "[$user]($style)"
-style_user = "bold blue"
-show_always = true
 
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+# --- PC Stats
 [custom.cpu]
 command = '''
 lscpu | awk -F: '/Model name/ {gsub(/^ +/, "", $2); print $2}' \
@@ -93,26 +261,28 @@ lscpu | awk -F: '/Model name/ {gsub(/^ +/, "", $2); print $2}' \
 | head -n1
 '''
 when = "true"
-format = "CPU: [$output]($style) "
-style = "bold cyan"
+format = " $output"
 
 [custom.cpu_utilization]
 command = "top -bn1 | grep 'Cpu(s)' | sed 's/.*, \\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}'"
 when = "true"
-format = " [$output]($style) "
-style = "bold green"
+format = "$output"
 
 [custom.memory]
-command = "/usr/local/bin/ram_usage"
-format = "🧠 [$output]($style) "
-style = "bold purple"
-shell = "bash"
+command = """
+used=$(free -m | awk '/^Mem:/ {print $3}')
+total=$(free -m | awk '/^Mem:/ {print $2}')
+
+if [ $total -lt 1024 ]; then
+  echo "$used/$total MiB"
+else
+  printf "%.2f/%.1f GiB\n" "$(echo "$used/1024" | bc -l)" "$(echo "$total/1024" | bc -l)"
+fi
+"""
 when = true
+format = "🧠 $output"
 
 [localip]
 ssh_only = false
-format = '[$localipv4](#FFC0CB)'
+format = '$localipv4'
 disabled = false
-
-[directory]
-format = "[$path]($style)"

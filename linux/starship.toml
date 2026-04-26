@@ -7,12 +7,6 @@ $git_branch\
 $git_status\
 $git_commit\
 $all\
-$fill\
-[](blue)\
-[ ${custom.cpu} ${custom.cpu_utilization} ](bg:blue fg:#bac2de)\
-[ ${custom.memory} ](bg:cyan fg:#bac2de)\
-[ ${localip} ](bg:green fg:#bac2de)\
-[](green)\
 $line_break\
 [╰─](bold green_bright)\
 $character\
@@ -22,8 +16,15 @@ $sudo\
 $status
 """
 
+right_format = """
+[](blue)\
+[ ${custom.cpu} ${custom.cpu_utilization} ](bg:blue)\
+[ ${custom.memory} ](bg:cyan)\
+[](cyan)\
+"""
+
 [fill]
-symbol = ' '
+symbol = " "
 
 [sudo]
 style = "bold green"

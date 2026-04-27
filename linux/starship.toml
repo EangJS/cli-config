@@ -20,7 +20,8 @@ right_format = """
 [](blue)\
 [ ${custom.cpu} ${custom.cpu_utilization} ](bg:blue)\
 [ ${custom.memory} ](bg:cyan)\
-[](cyan)\
+[ $localip ](bg:purple)\
+[](purple)\
 """
 
 [fill]
@@ -270,18 +271,16 @@ when = "true"
 format = "$output"
 
 [custom.memory]
-command = """
-used=$(free -m | awk '/^Mem:/ {print $3}')
-total=$(free -m | awk '/^Mem:/ {print $2}')
-
-if [ $total -lt 1024 ]; then
-  echo "$used/$total MiB"
-else
-  printf "%.2f/%.1f GiB\n" "$(echo "$used/1024" | bc -l)" "$(echo "$total/1024" | bc -l)"
-fi
-"""
+command = '''
+free -m | awk '/^Mem:/ {
+  if ($2 < 1024)
+    printf "%d/%d MiB", $3, $2
+  else
+    printf "%.2f/%.1f GiB", $3/1024, $2/1024
+}'
+'''
 when = true
-format = "🧠 $output"
+format = "🧠 $output "
 
 [localip]
 ssh_only = false

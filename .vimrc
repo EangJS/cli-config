@@ -85,6 +85,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'gerardbm/vim-md-headings'
 	Plug 'gerardbm/vim-md-checkbox'
 	Plug 'matze/vim-move'
+	Plug 'github/copilot.vim'
 
 	" Misc
 	Plug 'christoomey/vim-tmux-navigator'
